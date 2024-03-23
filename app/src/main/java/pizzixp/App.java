@@ -5,15 +5,17 @@ package pizzixp;
 //Usually you will require both swing and awt packages
 // even if you are working with just swings.
 import java.util.Scanner;
-class gui 
+class App
 {
     public static void main(String args[]) 
     {
+        var input = new Scanner(System.in);
         int scelta = 0;
         while (scelta == 0)
         {
             System.out.println("Scegli il tipo di interfaccia grafica da utilizzare:");
-            scelta = Integer.parseInt(new Scanner(System.in).nextLine());
+            scelta = Integer.parseInt(input.nextLine());
+            input.close();
             if (scelta == 1)
             {
                 new JavaSwingGui();

@@ -29,7 +29,14 @@ application {
     mainClass = 'pizzixp.App'
 }
 
+run
+{
+    standardInput = System.in
+}
+
+/*
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+*/
