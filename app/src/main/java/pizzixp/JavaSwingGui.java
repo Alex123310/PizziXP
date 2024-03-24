@@ -1,10 +1,15 @@
 package pizzixp;
 
 import java.awt.BorderLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 public class JavaSwingGui
 {
-    JavaSwingGui() 
+    JavaSwingGui()
     {
        
         //Creating the Frame
@@ -23,31 +28,57 @@ public class JavaSwingGui
         m1.add(m11);
         m1.add(m12);
 
+
+
+        //Creating center panel
+        var PanelCenter = new JPanel();
+        PanelCenter.setLayout(new BoxLayout(PanelCenter, BoxLayout.Y_AXIS));
+        var labelTest = new JLabel("Test Imagine");
+        var XPWallpaperLocation = new File("App/src/main/resources/Wallpaper.png");
+        BufferedImage XPWallpaper;
+        try
+        {
+            XPWallpaper = ImageIO.read(XPWallpaperLocation);
+        }catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Errore nel caricamento dell'immagine");
+        }
+        var XPWallpaperLabel = new JLabel(new ImageIcon(XPWallpaper));
+        PanelCenter.add(labelTest);
+        PanelCenter.add(XPWallpaperLabel);
+
+
+
         //Creating the panel at bottom and adding components
-        JPanel panel = new JPanel(); // the panel is not visible in output
+        JPanel PanelSouth = new JPanel(); // the panel is not visible in output
         JLabel label = new JLabel("Enter Text");
         JTextField tf = new JTextField(10); // accepts upto 10 characters
         JButton send = new JButton("Send");
         JButton reset = new JButton("Reset");
-        panel.add(label); // Components Added using Flow Layout
-        panel.add(tf);
-        panel.add(send);
-        panel.add(reset);
+        PanelSouth.add(label); // Components Added using Flow Layout
+        PanelSouth.add(tf);
+        PanelSouth.add(send);
+        PanelSouth.add(reset);
+
 
 
         //Adding Components to the frame.
-        frame.getContentPane().add(BorderLayout.SOUTH, panel);
-        /*----Cancella Dopo----Start*/
-        var mb1 = new JMenuBar();
-        var mb11 = new JMenu("TEST DI UNA SECONDA BARRA");
-        mb1.add(mb11);
-        frame.getContentPane().add(BorderLayout.SOUTH, mb1);
-        var mb3 = new JMenuBar();
-        var mb31 = new JMenu("TEST DI UNA TERZA BARRA");
-        mb3.add(mb31);
-        frame.getContentPane().add(BorderLayout.CENTER, mb3);
-        /*---Cancella Dopo-------End*/
         frame.getContentPane().add(BorderLayout.NORTH, mb);
+        frame.getContentPane().add(BorderLayout.CENTER, PanelCenter);
+        frame.getContentPane().add(BorderLayout.SOUTH, PanelSouth);
+        /*----Cancella Dopo----Start*/
+        //var mb1 = new JMenuBar();
+        //var mb11 = new JMenu("TEST DI UNA SECONDA BARRA");
+        //mb1.add(mb11);
+        //frame.getContentPane().add(BorderLayout.SOUTH, mb1);
+        //var mb3 = new JMenuBar();
+        //var mb31 = new JMenu("TEST DI UNA TERZA BARRA");
+        //mb3.add(mb31);
+        //frame.getContentPane().add(BorderLayout.CENTER, mb3);
+        /*---Cancella Dopo-------End*/
+        
         frame.setVisible(true);
     }
 }
