@@ -1,17 +1,17 @@
 package pizzixp;
 
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import imgscalr.*;
 public class JavaSwingGui
 {
     JavaSwingGui()
     {
-       
         //Creating the Frame
         JFrame frame = new JFrame("Gay frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,9 +45,11 @@ public class JavaSwingGui
             e.printStackTrace();
             throw new RuntimeException("Errore nel caricamento dell'immagine");
         }
+
         var XPWallpaperLabel = new JLabel(new ImageIcon(XPWallpaper));
         PanelCenter.add(labelTest);
         PanelCenter.add(XPWallpaperLabel);
+        
 
 
 
