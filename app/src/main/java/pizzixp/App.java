@@ -35,6 +35,7 @@ class App
             }
         }
         System.out.println(Toolkit.getDefaultToolkit().getScreenSize());
+        Toolkit.getDefaultToolkit().beep();
     }
 
 }
