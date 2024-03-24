@@ -34,7 +34,7 @@ public class JavaSwingGui
         var PanelCenter = new JPanel();
         PanelCenter.setLayout(new BoxLayout(PanelCenter, BoxLayout.Y_AXIS));
         var labelTest = new JLabel("Test Imagine");
-        var XPWallpaperLocation = new File("App/src/main/resources/Wallpaper.png");
+        var XPWallpaperLocation = new File("app/src/main/resources/Wallpaper.png");
         BufferedImage XPWallpaper;
         try
         {
