@@ -45,7 +45,9 @@ public class JavaSwingGui
             e.printStackTrace();
             throw new RuntimeException("Errore nel caricamento dell'immagine");
         }
-
+        var width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        var height = Toolkit.getDefaultToolkit().getScreenSize().height;
+        XPWallpaper = Scalr.resize(XPWallpaper,width,height);
         var XPWallpaperLabel = new JLabel(new ImageIcon(XPWallpaper));
         PanelCenter.add(labelTest);
         PanelCenter.add(XPWallpaperLabel);
