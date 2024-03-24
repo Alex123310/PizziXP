@@ -34,7 +34,7 @@ public class JavaSwingGui
         var PanelCenter = new JPanel();
         PanelCenter.setLayout(new BoxLayout(PanelCenter, BoxLayout.Y_AXIS));
         var labelTest = new JLabel("Test Imagine");
-        var XPWallpaperLocation = new File("app/src/main/resources/Wallpaper.png");
+        var XPWallpaperLocation = new File("src/main/resources/Wallpaper.png");
         BufferedImage XPWallpaper;
         try
         {
@@ -43,7 +43,7 @@ public class JavaSwingGui
         {
             System.err.println(e.getMessage());
             e.printStackTrace();
-            throw new RuntimeException("Errore nel caricamento dell'immagine");
+            throw new RuntimeException("Errore nel caricamento dell'immagine a " + XPWallpaperLocation.getAbsolutePath());
         }
         var width = Toolkit.getDefaultToolkit().getScreenSize().width;
         var height = Toolkit.getDefaultToolkit().getScreenSize().height;
