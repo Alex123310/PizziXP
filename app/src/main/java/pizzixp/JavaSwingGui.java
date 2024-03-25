@@ -8,6 +8,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import imgscalr.*;
+import java.awt.Graphics;
+import java.awt.Dimension;
 public class JavaSwingGui
 {
     JavaSwingGui()
@@ -28,7 +30,7 @@ public class JavaSwingGui
         m1.add(m11);
         m1.add(m12);
 
-
+        
 
         //Creating center panel
         var PanelCenter = new JPanel();
@@ -52,9 +54,6 @@ public class JavaSwingGui
         PanelCenter.add(labelTest);
         PanelCenter.add(XPWallpaperLabel);
         
-
-
-
         //Creating the panel at bottom and adding components
         JPanel PanelSouth = new JPanel(); // the panel is not visible in output
         JLabel label = new JLabel("Enter Text");
@@ -84,5 +83,35 @@ public class JavaSwingGui
         /*---Cancella Dopo-------End*/
         
         frame.setVisible(true);
+    }
+}
+
+
+class PicPanel extends JPanel{
+
+    private BufferedImage image;
+    private int w,h;
+    public PicPanel(String fname){
+
+        //reads the image
+        try {
+            image = ImageIO.read(new File(fname));
+            w = Toolkit.getDefaultToolkit().getScreenSize().width;
+            h = Toolkit.getDefaultToolkit().getScreenSize().height;
+
+        } catch (IOException ioe) {
+            System.out.println("Could not read in the pic");
+            //System.exit(0);
+        }
+
+    }
+
+    public Dimension getPreferredSize() {
+        return new Dimension(w,h);
+    }
+    //this will draw the image
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawImage(image,0,0,this);
     }
 }
