@@ -38,6 +38,7 @@ public class MainMenu
         {
             new JavaSwingGui();
             MainMenu.setVisible(false);
+            MainMenu.dispose();
         }
         );
 

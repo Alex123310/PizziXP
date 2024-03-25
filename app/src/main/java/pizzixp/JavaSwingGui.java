@@ -28,8 +28,10 @@ public class JavaSwingGui
         mb.add(m2);
         JMenuItem m11 = new JMenuItem("Open");
         JMenuItem m12 = new JMenuItem("Save as");
+        JMenuItem m13 = new JMenuItem("Close");
         m1.add(m11);
         m1.add(m12);
+        m1.add(m13);
 
         
 
@@ -68,6 +70,12 @@ public class JavaSwingGui
         PanelSouth.add(reset);
 
 
+        //Button Fuctionality
+        m13.addActionListener(e -> {
+                frame.setVisible(false);
+                frame.dispose();
+                new MainMenu();
+        });
 
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.NORTH, mb);
