@@ -41,22 +41,9 @@ public class JavaSwingGui
         var labelTest = new JLabel("Test Imagine");
         //app/src/main/resources/Wallpaper.png
         URL XPWallpaperLocation = getClass().getResource("/Wallpaper.png");
-        BufferedImage XPWallpaper;
-        try
-        {
-            XPWallpaper = ImageIO.read(XPWallpaperLocation);
-        }catch (IOException e)
-        {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
-            throw new RuntimeException("Errore nel caricamento dell'immagine a " + XPWallpaperLocation);
-        }
-        var width = Toolkit.getDefaultToolkit().getScreenSize().width;
-        var height = Toolkit.getDefaultToolkit().getScreenSize().height;
-        XPWallpaper = Scalr.resize(XPWallpaper,width,height);
-        var XPWallpaperLabel = new JLabel(new ImageIcon(XPWallpaper));
+        WallpaperPanel wallpaperPanel = new WallpaperPanel(XPWallpaperLocation.getPath());
+        PanelCenter.add(wallpaperPanel);
         PanelCenter.add(labelTest);
-        PanelCenter.add(XPWallpaperLabel);
         
         //Creating the panel at bottom and adding components
         JPanel PanelSouth = new JPanel(); // the panel is not visible in output
@@ -77,45 +64,38 @@ public class JavaSwingGui
                 new MainMenu();
         });
 
+        
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.NORTH, mb);
         frame.getContentPane().add(BorderLayout.CENTER, PanelCenter);
         frame.getContentPane().add(BorderLayout.SOUTH, PanelSouth);
-        /*----Cancella Dopo----Start*/
-        //var mb1 = new JMenuBar();
-        //var mb11 = new JMenu("TEST DI UNA SECONDA BARRA");
-        //mb1.add(mb11);
-        //frame.getContentPane().add(BorderLayout.SOUTH, mb1);
-        //var mb3 = new JMenuBar();
-        //var mb31 = new JMenu("TEST DI UNA TERZA BARRA");
-        //mb3.add(mb31);
-        //frame.getContentPane().add(BorderLayout.CENTER, mb3);
-        /*---Cancella Dopo-------End*/
-        
+
         frame.setVisible(true);
     }
 }
 
-
-class PicPanel extends JPanel{
+//this class will draw the image on the panel
+class WallpaperPanel extends JPanel
+{
 
     private BufferedImage image;
     private int w,h;
-    public PicPanel(String fname){
+    public WallpaperPanel(String fname){
 
         //reads the image
-        try {
+        try
+        {
             image = ImageIO.read(new File(fname));
             w = Toolkit.getDefaultToolkit().getScreenSize().width;
             h = Toolkit.getDefaultToolkit().getScreenSize().height;
 
-        } catch (IOException ioe) {
+        } catch (IOException ioe) 
+        {
             System.out.println("Could not read in the pic");
             //System.exit(0);
         }
 
     }
-
     public Dimension getPreferredSize() {
         return new Dimension(w,h);
     }
