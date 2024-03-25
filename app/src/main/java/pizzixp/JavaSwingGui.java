@@ -38,13 +38,13 @@ public class JavaSwingGui
         //Creating center panel
         var PanelCenter = new JPanel();
         PanelCenter.setLayout(new BoxLayout(PanelCenter, BoxLayout.Y_AXIS));
-        var labelTest = new JLabel("Test Imagine");
         //app/src/main/resources/Wallpaper.png
         URL XPWallpaperLocation = getClass().getResource("/Wallpaper.png");
-        WallpaperPanel wallpaperPanel = new WallpaperPanel(XPWallpaperLocation.getPath());
+        WallpaperPanel wallpaperPanel = new WallpaperPanel(XPWallpaperLocation);
         PanelCenter.add(wallpaperPanel);
-        PanelCenter.add(labelTest);
         
+
+
         //Creating the panel at bottom and adding components
         JPanel PanelSouth = new JPanel(); // the panel is not visible in output
         JLabel label = new JLabel("Enter Text");
@@ -80,12 +80,12 @@ class WallpaperPanel extends JPanel
 
     private BufferedImage image;
     private int w,h;
-    public WallpaperPanel(String fname){
+    public WallpaperPanel(URL path){
 
         //reads the image
         try
         {
-            image = ImageIO.read(new File(fname));
+            image = ImageIO.read(path);
             w = Toolkit.getDefaultToolkit().getScreenSize().width;
             h = Toolkit.getDefaultToolkit().getScreenSize().height;
 
