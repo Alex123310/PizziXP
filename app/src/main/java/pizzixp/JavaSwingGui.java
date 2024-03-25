@@ -41,6 +41,7 @@ public class JavaSwingGui
         //app/src/main/resources/Wallpaper.png
         URL XPWallpaperLocation = getClass().getResource("/Wallpaper.png");
         WallpaperPanel wallpaperPanel = new WallpaperPanel(XPWallpaperLocation);
+        
         PanelCenter.add(wallpaperPanel);
         
 
