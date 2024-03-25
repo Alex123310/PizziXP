@@ -10,30 +10,7 @@ class App
 {
     public static void main(String args[]) 
     {
-        var input = new Scanner(System.in);
-        int scelta = 0;
-        while (scelta == 0)
-        {
-            System.out.println("Scegli il tipo di interfaccia grafica da utilizzare:");
-            scelta = Integer.parseInt(input.nextLine());
-            input.close();
-            if (scelta == 1)
-            {
-                new JavaSwingGui();
-                break;
-            }
-            if(scelta == 2)
-            {
-                new awtgui();
-                break;
-            }
-            else
-            {
-                System.out.println("Scelta non valida, riprova");
-                
-                scelta = 0;
-            }
-        }
+        new MainMenu();
         System.out.println(Toolkit.getDefaultToolkit().getScreenSize());
         Toolkit.getDefaultToolkit().beep();
     }

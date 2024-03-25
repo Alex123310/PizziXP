@@ -11,6 +11,14 @@ plugins {
     id 'application'
 }
 
+jar {
+    // Define the main class for the application.
+    manifest {
+        attributes(
+            'Main-Class': 'pizzixp.App'
+        )
+    }
+}
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
