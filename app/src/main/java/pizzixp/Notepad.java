@@ -2,6 +2,7 @@ package pizzixp;
 
 import javax.swing.*;
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.filechooser.*;
@@ -63,6 +64,9 @@ public class Notepad
             if (returnValue == JFileChooser.APPROVE_OPTION)
             {
                 var file = fileChooser.getSelectedFile();
+                if (!file.getName().toLowerCase().endsWith(".txt")) {
+                    file = new File(file.getParentFile(), file.getName() + ".txt");
+                }
                 try
                 {
                     var writer = new FileWriter(file);
