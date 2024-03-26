@@ -15,6 +15,9 @@ public class JavaSwingGui
 {
     JavaSwingGui()
     {
+        var width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        var height = Toolkit.getDefaultToolkit().getScreenSize().height;
+
         //Creating the Frame
         JFrame frame = new JFrame("Gay frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,7 +36,7 @@ public class JavaSwingGui
         m1.add(m12);
         m1.add(m13);
 
-        
+
 
         //Creating center panel
         var PanelCenter = new JPanel();
@@ -45,21 +48,18 @@ public class JavaSwingGui
         BufferedImage PlaceholderIcon;
         PlaceholderIcon = URLtoBufferedImage.convert(PlaceholderIconLocation);
         PlaceholderIcon = Scalr.resize(PlaceholderIcon,100);
-        wallpaperPanel.add(new JLabel(new ImageIcon(PlaceholderIcon)));
+        wallpaperPanel.add(new JButton(new ImageIcon(PlaceholderIcon)));
         PanelCenter.add(wallpaperPanel);
         
 
 
         //Creating the panel at bottom and adding components
-        JPanel PanelSouth = new JPanel(); // the panel is not visible in output
-        JLabel label = new JLabel("Enter Text");
-        JTextField tf = new JTextField(10); // accepts upto 10 characters
-        JButton send = new JButton("Send");
-        JButton reset = new JButton("Reset");
-        PanelSouth.add(label); // Components Added using Flow Layout
-        PanelSouth.add(tf);
-        PanelSouth.add(send);
-        PanelSouth.add(reset);
+        JPanel TaskBar = new JPanel(); // the panel is not visible in output
+        var TaskBarLocation = getClass().getResource("/TaskBar.png");
+        var TaskBarImage = URLtoBufferedImage.convert(TaskBarLocation);
+        TaskBarImage = Scalr.resize(TaskBarImage, width, 50);
+        TaskBar.add(new JLabel(new ImageIcon(TaskBarImage)));
+        TaskBar.setLayout(new BoxLayout(TaskBar, BoxLayout.X_AXIS));
 
 
         //Button Fuctionality
@@ -73,7 +73,7 @@ public class JavaSwingGui
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.NORTH, mb);
         frame.getContentPane().add(BorderLayout.CENTER, PanelCenter);
-        frame.getContentPane().add(BorderLayout.SOUTH, PanelSouth);
+        frame.getContentPane().add(BorderLayout.SOUTH, TaskBar);
 
         frame.setVisible(true);
     }
