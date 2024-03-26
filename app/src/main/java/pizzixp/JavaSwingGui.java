@@ -39,12 +39,15 @@ public class JavaSwingGui
 
 
         //Creating center panel
+
+        //Declaring all image urls
+        URL PlaceholderIconLocation = getClass().getResource("/PlaceholderIcon.png");
+        URL XPWallpaperLocation = getClass().getResource("/Wallpaper.png");
+
         var PanelCenter = new JPanel();
         PanelCenter.setLayout(new BoxLayout(PanelCenter, BoxLayout.Y_AXIS));
         //app/src/main/resources/Wallpaper.png
-        URL XPWallpaperLocation = getClass().getResource("/Wallpaper.png");
         WallpaperPanel wallpaperPanel = new WallpaperPanel(XPWallpaperLocation);
-        URL PlaceholderIconLocation = getClass().getResource("/PlaceholderIcon.png");
         BufferedImage PlaceholderIcon;
         PlaceholderIcon = URLtoBufferedImage.convert(PlaceholderIconLocation);
         PlaceholderIcon = Scalr.resize(PlaceholderIcon,100);
