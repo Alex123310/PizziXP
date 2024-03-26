@@ -41,7 +41,11 @@ public class JavaSwingGui
         //app/src/main/resources/Wallpaper.png
         URL XPWallpaperLocation = getClass().getResource("/Wallpaper.png");
         WallpaperPanel wallpaperPanel = new WallpaperPanel(XPWallpaperLocation);
-        
+        URL PlaceholderIconLocation = getClass().getResource("/PlaceholderIcon.png");
+        BufferedImage PlaceholderIcon;
+        PlaceholderIcon = URLtoBufferedImage.convert(PlaceholderIconLocation);
+        PlaceholderIcon = Scalr.resize(PlaceholderIcon,100);
+        wallpaperPanel.add(new JLabel(new ImageIcon(PlaceholderIcon)));
         PanelCenter.add(wallpaperPanel);
         
 
@@ -104,5 +108,20 @@ class WallpaperPanel extends JPanel
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(image,0,0,w,h,this);
+    }
+}
+
+class URLtoBufferedImage
+{
+    public static BufferedImage convert(URL url)
+    {
+        try
+        {
+            return ImageIO.read(url);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new RuntimeException("Could not read in the pic");
+        }
     }
 }
