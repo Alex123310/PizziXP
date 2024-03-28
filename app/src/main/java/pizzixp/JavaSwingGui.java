@@ -49,11 +49,18 @@ public class JavaSwingGui
         PanelCenter.setLayout(new BoxLayout(PanelCenter, BoxLayout.Y_AXIS));
         //app/src/main/resources/Wallpaper.png
         WallpaperPanel wallpaperPanel = new WallpaperPanel(XPWallpaperLocation);
+        //Notepad Button
         BufferedImage NotepadIcon;
         NotepadIcon = URLtoBufferedImage.convert(NotepadIconLocation);
         NotepadIcon = Scalr.resize(NotepadIcon,100);
         var NotepadButton = new JButton(new ImageIcon(NotepadIcon));
+
+        //Calculator button
+        var CalculatorButton = new JButton("Calculator");
+
         wallpaperPanel.add(NotepadButton);
+        wallpaperPanel.add(CalculatorButton);
+
         PanelCenter.add(wallpaperPanel);
         
 
@@ -75,11 +82,12 @@ public class JavaSwingGui
         });
 
         NotepadButton.addActionListener(e -> {
-            //frame.setVisible(false);
-            //frame.dispose();
             new Notepad();
         });
 
+        CalculatorButton.addActionListener(e -> {
+            new Calculator();
+        });
         
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.NORTH, mb);
