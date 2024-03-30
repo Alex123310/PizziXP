@@ -27,7 +27,7 @@ public class Calculator
         var DisplayPanel = new JPanel();
         DisplayPanel.setLayout(new BoxLayout(DisplayPanel, BoxLayout.X_AXIS));
         var Display = new JTextField();
-        Display.setText("0");
+        //Display.setText("0");
         Display.setEditable(false);
 
         DisplayPanel.add(Display);

@@ -44,11 +44,13 @@ public class JavaSwingGui
         URL PlaceholderIconLocation = getClass().getResource("/PlaceholderIcon.png");
         URL XPWallpaperLocation = getClass().getResource("/Wallpaper.png");
         URL NotepadIconLocation = getClass().getResource("/Notepad.jpeg");
+        URL CalculatorIconLocation = getClass().getResource("/Calculator.jpeg");
 
         var PanelCenter = new JPanel();
         PanelCenter.setLayout(new BoxLayout(PanelCenter, BoxLayout.Y_AXIS));
         //app/src/main/resources/Wallpaper.png
         WallpaperPanel wallpaperPanel = new WallpaperPanel(XPWallpaperLocation);
+
         //Notepad Button
         BufferedImage NotepadIcon;
         NotepadIcon = URLtoBufferedImage.convert(NotepadIconLocation);
@@ -56,7 +58,10 @@ public class JavaSwingGui
         var NotepadButton = new JButton(new ImageIcon(NotepadIcon));
 
         //Calculator button
-        var CalculatorButton = new JButton("Calculator");
+        BufferedImage CalculatorIcon;
+        CalculatorIcon = URLtoBufferedImage.convert(CalculatorIconLocation);
+        CalculatorIcon = Scalr.resize(CalculatorIcon,100);
+        var CalculatorButton = new JButton(new ImageIcon(CalculatorIcon));
 
         wallpaperPanel.add(NotepadButton);
         wallpaperPanel.add(CalculatorButton);
