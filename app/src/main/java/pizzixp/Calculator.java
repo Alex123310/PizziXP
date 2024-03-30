@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import net.objecthunter.exp4j.*;;
 public class Calculator
 {
     Calculator()
@@ -53,13 +54,29 @@ public class Calculator
                     {
                         var button1 = (JButton) rowButton;
                         button1.addActionListener(e -> {
-                            Display.setText(Display.getText() + button1.getText());
+                            if (!button1.getText().equals("="))
+                            {
+                                Display.setText(Display.getText() + button1.getText());
+                            }
                         });
                     }
                 }
             }
         }
         
+        //Make equal button calculate the expression
+        var ButtonEqual = (JButton) ((JPanel) MainPanel.getComponent(3)).getComponent(2);
+        ButtonEqual.addActionListener(e -> {
+            try
+            {
+                var expression = new ExpressionBuilder(Display.getText()).build();
+                Display.setText(Double.toString(expression.evaluate()));
+            }
+            catch (Exception ex)
+            {
+                Display.setText("Error");
+            }
+        });
 
         // Add DisplayPanel and MainPanel to frame with GridBagLayout
         GridBagConstraints gbc = new GridBagConstraints();

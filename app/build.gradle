@@ -30,6 +30,9 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
+    
+    //exp4j
+    implementation 'net.objecthunter:exp4j:0.4.8'
 }
 
 application {
