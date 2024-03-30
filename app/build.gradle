@@ -18,6 +18,12 @@ jar {
             'Main-Class': 'pizzixp.App'
         )
     }
+
+    // Include the dependencies in the JAR.
+    from
+    {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 repositories {
     // Use Maven Central for resolving dependencies.
