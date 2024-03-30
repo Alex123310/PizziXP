@@ -44,7 +44,7 @@ public class JavaSwingGui
         URL PlaceholderIconLocation = getClass().getResource("/PlaceholderIcon.png");
         URL XPWallpaperLocation = getClass().getResource("/Wallpaper.png");
         URL NotepadIconLocation = getClass().getResource("/Notepad.jpeg");
-        URL CalculatorIconLocation = getClass().getResource("/Calculator.jpeg");
+        URL CalculatorIconLocation = getClass().getResource("/Calculator.png");
 
         var PanelCenter = new JPanel();
         PanelCenter.setLayout(new BoxLayout(PanelCenter, BoxLayout.Y_AXIS));
