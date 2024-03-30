@@ -1,20 +1,31 @@
 package pizzixp;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 public class Calculator
 {
     Calculator()
     {
         System.out.println("Calculator object created");
 
+        var width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        var height = Toolkit.getDefaultToolkit().getScreenSize().height;
+
+        //Frame Creation
         var frame = new JFrame("Calculator");
         frame.setSize(300, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        frame.setLayout(new GridBagLayout());
 
         //Calculator Display
         var DisplayPanel = new JPanel();
+        DisplayPanel.setLayout(new BoxLayout(DisplayPanel, BoxLayout.X_AXIS));
         var Display = new JTextField();
         Display.setText("0");
         Display.setEditable(false);
@@ -23,11 +34,56 @@ public class Calculator
 
         //Main Panel
         var MainPanel = new JPanel();
-        MainPanel.setLayout(new BoxLayout(MainPanel, BoxLayout.Y_AXIS));
+        MainPanel.setLayout(new GridLayout(4,4));
+        MainPanel.setBorder(new EmptyBorder(10,10,10,10));
+        initializeDivideSection(MainPanel);
+
+        //make buttons write to the display
+        var buttons = MainPanel.getComponents();
+        System.out.println(buttons.toString());
+        for (var button : buttons)
+        {
+            if (button instanceof JPanel)
+            {
+                var row = (JPanel) button;
+                var rowButtons = row.getComponents();
+                for (var rowButton : rowButtons)
+                {
+                    if (rowButton instanceof JButton)
+                    {
+                        var button1 = (JButton) rowButton;
+                        button1.addActionListener(e -> {
+                            Display.setText(Display.getText() + button1.getText());
+                        });
+                    }
+                }
+            }
+        }
         
+
+        // Add DisplayPanel and MainPanel to frame with GridBagLayout
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.BOTH;
+
+        //Frame Generation
+        gbc.weighty = 0.3;
+        frame.add(DisplayPanel,gbc);
+        gbc.weighty = 0.7;
+        gbc.weightx = 0.8;
+        frame.add(MainPanel,gbc);
+        frame.setVisible(true);
+
+    }
+
+
+
+
+
+    private void initializeDivideSection(JPanel MainPanel) {
         //Row 1
         var Row1 = new JPanel();
-        Row1.setLayout(new BoxLayout(Row1, BoxLayout.X_AXIS));
+        Row1.setLayout(new GridLayout(1,4));
         var Button1 = new JButton("1");
         var Button2 = new JButton("2");
         var Button3 = new JButton("3");
@@ -40,7 +96,7 @@ public class Calculator
 
         //Row 2
         var Row2 = new JPanel();
-        Row2.setLayout(new BoxLayout(Row2, BoxLayout.X_AXIS));
+        Row2.setLayout(new GridLayout(1,4));
         var Button4 = new JButton("4");
         var Button5 = new JButton("5");
         var Button6 = new JButton("6");
@@ -53,7 +109,7 @@ public class Calculator
 
         //Row 3
         var Row3 = new JPanel();
-        Row3.setLayout(new BoxLayout(Row3, BoxLayout.X_AXIS));
+        Row3.setLayout(new GridLayout(1,4));
         var Button7 = new JButton("7");
         var Button8 = new JButton("8");
         var Button9 = new JButton("9");
@@ -66,7 +122,7 @@ public class Calculator
 
         //Row 4
         var Row4 = new JPanel();
-        Row4.setLayout(new BoxLayout(Row4, BoxLayout.X_AXIS));
+        Row4.setLayout(new GridLayout(1,4));
         var Button0 = new JButton("0");
         var ButtonDot = new JButton(".");
         var ButtonEqual = new JButton("=");
@@ -82,11 +138,5 @@ public class Calculator
         MainPanel.add(Row2);
         MainPanel.add(Row3);
         MainPanel.add(Row4);
-
-        //Frame Generation
-        frame.add(DisplayPanel);
-        frame.add(MainPanel);
-        frame.setVisible(true);
-
     }
 }
