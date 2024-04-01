@@ -8,6 +8,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+
 import net.objecthunter.exp4j.*;;
 public class Calculator
 {
@@ -75,6 +80,17 @@ public class Calculator
             catch (Exception ex)
             {
                 Display.setText("Error");
+            }
+        });
+
+        //Make backspace delete a keystroke
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+        .addKeyEventDispatcher(new KeyEventDispatcher() {
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e)
+            {
+                System.out.println("Mamma aiutout");
+                return false;
             }
         });
 
