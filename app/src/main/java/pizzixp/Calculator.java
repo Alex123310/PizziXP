@@ -2,18 +2,18 @@ package pizzixp;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
+import net.objecthunter.exp4j.*;
+import java.net.URL;
+import java.awt.image.BufferedImage;
 
-import net.objecthunter.exp4j.*;;
 public class Calculator
 {
     Calculator()
@@ -40,9 +40,10 @@ public class Calculator
 
         //Main Panel
         var MainPanel = new JPanel();
-        MainPanel.setLayout(new GridLayout(4,4));
+        MainPanel.setLayout(new GridLayout(5,4));
         MainPanel.setBorder(new EmptyBorder(10,10,10,10));
         initializeDivideSection(MainPanel);
+        MainPanel.add(new JLabel("Premi 'Backspace' per cancellare un carattere :D "));
 
         //make buttons write to the display
         var buttons = MainPanel.getComponents();
@@ -61,7 +62,7 @@ public class Calculator
                         button1.addActionListener(e -> {
                             if (!button1.getText().equals("="))
                             {
-                                Display.setText(Display.getText() + button1.getText());
+                                    Display.setText(Display.getText() + button1.getText());
                             }
                         });
                     }
@@ -84,12 +85,17 @@ public class Calculator
         });
 
         //Make backspace delete a keystroke
-        KeyboardFocusManager.getCurrentKeyboardFocusManager()
-        .addKeyEventDispatcher(new KeyEventDispatcher() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
             @Override
-            public boolean dispatchKeyEvent(KeyEvent e)
-            {
-                System.out.println("Mamma aiutout");
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+                {
+                    var text = Display.getText();
+                    if (text.length() > 0)
+                    {
+                        Display.setText(text.substring(0, text.length() - 1));
+                    }
+                }
                 return false;
             }
         });
@@ -114,12 +120,18 @@ public class Calculator
 
 
     private void initializeDivideSection(JPanel MainPanel) {
+        URL[] ButtonLocations = new URL[4];
+        for(int i = 0; i <= 3; i++)
+        {
+            ButtonLocations[i] =  getClass().getResource("/Numbers/" + i + ".png");
+        }
+
         //Row 1
         var Row1 = new JPanel();
         Row1.setLayout(new GridLayout(1,4));
-        var Button1 = new JButton("1");
-        var Button2 = new JButton("2");
-        var Button3 = new JButton("3");
+        var Button1 = new JButton(new ImageIcon(URLtoBufferedImage.convert(ButtonLocations[1])));
+        var Button2 = new JButton(new ImageIcon(URLtoBufferedImage.convert(ButtonLocations[2])));
+        var Button3 = new JButton(new ImageIcon(URLtoBufferedImage.convert(ButtonLocations[3])));
         var ButtonPlus = new JButton("+");
 
         Row1.add(Button1);

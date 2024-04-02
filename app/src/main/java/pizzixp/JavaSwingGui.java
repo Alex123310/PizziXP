@@ -135,16 +135,3 @@ class WallpaperPanel extends JPanel
     }
 }
 
-class URLtoBufferedImage
-{
-    public static BufferedImage convert(URL url)
-    {
-        try
-        {
-            return ImageIO.read(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Could not read in the pic");
-        }
-    }
-}
