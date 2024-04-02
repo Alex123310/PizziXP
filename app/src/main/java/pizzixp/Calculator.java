@@ -21,7 +21,7 @@ public class Calculator
         //Frame Creation
         var frame = new JFrame("Calculator");
         frame.setSize(300, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridBagLayout());
 
         //Calculator Display
@@ -155,5 +155,6 @@ public class Calculator
         MainPanel.add(Row2);
         MainPanel.add(Row3);
         MainPanel.add(Row4);
+        
     }
 }
