@@ -129,9 +129,12 @@ public class Calculator
         //Row 1
         var Row1 = new JPanel();
         Row1.setLayout(new GridLayout(1,4));
-        var Button1 = new JButton(new ImageIcon(URLtoBufferedImage.convert(ButtonLocations[1])));
-        var Button2 = new JButton(new ImageIcon(URLtoBufferedImage.convert(ButtonLocations[2])));
-        var Button3 = new JButton(new ImageIcon(URLtoBufferedImage.convert(ButtonLocations[3])));
+        //var Button1 = new JButton(new ImageIcon(URLtoBufferedImage.convert(ButtonLocations[1])));
+        //var Button2 = new JButton(new ImageIcon(URLtoBufferedImage.convert(ButtonLocations[2])));
+        //var Button3 = new JButton(new ImageIcon(URLtoBufferedImage.convert(ButtonLocations[3])));
+        var Button1 = new JButton("1");
+        var Button2 = new JButton("2");
+        var Button3 = new JButton("3");
         var ButtonPlus = new JButton("+");
 
         Row1.add(Button1);
