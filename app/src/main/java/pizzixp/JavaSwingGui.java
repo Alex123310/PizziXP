@@ -19,7 +19,7 @@ public class JavaSwingGui
         var height = Toolkit.getDefaultToolkit().getScreenSize().height;
 
         //Creating the Frame
-        JFrame frame = new JFrame("Gay frame");
+        JFrame frame = new JFrame("PizziXP");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
 

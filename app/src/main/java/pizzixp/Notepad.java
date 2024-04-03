@@ -1,11 +1,19 @@
 package pizzixp;
 
+import javax.print.DocFlavor.READER;
 import javax.swing.*;
+
+import java.awt.TextArea;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.CharBuffer;
+import java.util.Scanner;
+import java.io.FileReader;
 import javax.swing.filechooser.*;
+import javax.swing.plaf.FileChooserUI;
 public class Notepad
 {
     Notepad ()
@@ -24,9 +32,11 @@ public class Notepad
         JMenu FileMenu = new JMenu("FILE");
         var CloseMenuItem = new JMenuItem("Close");
         var ExitMenuItem = new JMenuItem("Exit");
+        var OpenMenuItem = new JMenuItem("Open");
 
         FileMenu.add(CloseMenuItem);
         FileMenu.add(ExitMenuItem);
+        FileMenu.add(OpenMenuItem);
 
         mb.add(FileMenu);
         frame.setJMenuBar(mb);
@@ -52,8 +62,31 @@ public class Notepad
         {
             System.exit(0);
         });
-
         
+        OpenMenuItem.addActionListener(e ->
+        {
+            var fileChooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES","txt","text");
+            fileChooser.setFileFilter(filter);
+            var returnValue = fileChooser.showOpenDialog(textArea);
+            if (returnValue == JFileChooser.APPROVE_OPTION)
+            {
+                var file = fileChooser.getSelectedFile();
+                try
+                {
+                    String text;
+                    text = new Scanner(file).nextLine();
+                    textArea.setText(text);
+                }
+                catch(IOException e1)
+                {
+                    System.out.println(e1);
+                    throw new RuntimeException("Accirt");
+                }
+                
+
+            }
+        });
         SaveMenuItem.addActionListener(e -> 
         {
             var text = textArea.getText();
